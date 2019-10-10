@@ -37,7 +37,7 @@
                         {% for i in contents %}
                             <tr>
                                 {% for j in i %}
-                                    <td>{{ j }}</td>
+				<td><a href="{{ url_for('show_shipping_info', company_id=i[0]) }}">{{ j }}</a></td>
                                 {% endfor %}
                             </tr>
                         {% endfor %}

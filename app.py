@@ -1,9 +1,11 @@
 from flask import Flask, render_template, url_for, redirect, flash, request
 from form.forms import LoginForm, SearchForm, AddCompanyForm, AddShippingForm
 from database import insert_company, insert_shipping_info, session, get_fields, get_contents
+from database import get_slave_fields, get_slave_contents
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, LoginManager, login_user, login_required
 import config
+
 
 
 app = Flask(__name__)
@@ -49,15 +51,15 @@ def login():
 def index():
     form = SearchForm()
     table = 'company'
-    company_fields = get_fields(table)
-    company_contents = get_contents(table)
+    fields = get_fields(table)
+    contents = get_contents(table)
     return render_template('index.html', form=form, fields=fields, contents=contents)
 
 @app.route('/show_shipping_info/<int:company_id>')
 def show_shipping_info(company_id):
     table = 'shipping_info'
-    shipping_fields = get_slave_fields(table)
-    shipping_contents = get_slave_contents(table, company_id)
+    fields = get_slave_fields(table)
+    contents = get_slave_contents(table, company_id)
     return render_template('show_shipping_info.html', fields=fields, contents=contents)
 
 

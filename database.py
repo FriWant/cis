@@ -46,12 +46,12 @@ def get_contents(table):
 
 def get_slave_fields(table):
     cur.execute('show fields from %s'%table)
-    lables = cur.fetchall()
+    labels = cur.fetchall()
     fields = [l[0] for l in labels]
     return fields
 
 def get_slave_contents(table, c_id):
-    cur.execute('select * from %s where company_id = %s'%(tabel, c_id))
+    cur.execute('select * from %s where company_id = %d'%(table, c_id))
     contents = cur.fetchall()
     return contents
 

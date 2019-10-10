@@ -1,0 +1,19 @@
+{% from 'macros.html' import form_field %}
+{% extends "layout.html" %}
+{% block body %}
+
+{% if current_user.is_authenticated %}
+<form method="post">
+	{{ form.csrf_token }}
+	{{ form_field(form.company_id)}}<br>
+	{{ form_field(form.model) }}<br>
+	{{ form_field(form.shipping_time) }}<br>
+	{{ form_field(form.quantity) }}<br>
+	{{ form_field(form.worth) }}<br>
+	{{ form_field(form.weight) }}<br>
+	{{ form_field(form.shipping_number) }}<br>
+	{{ form_field(form.remark) }}<br>
+	{{ form_field(form.submit) }}<br>
+</form>
+{% endif %}
+{% endblock %}

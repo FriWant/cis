@@ -49,10 +49,17 @@ def login():
 def index():
     form = SearchForm()
     table = 'company'
-    fields = get_fields(table)
-    contents = get_contents(table)
-
+    company_fields = get_fields(table)
+    company_contents = get_contents(table)
     return render_template('index.html', form=form, fields=fields, contents=contents)
+
+@app.route('/show_shipping_info/<int:company_id>')
+def show_shipping_info(company_id):
+    table = 'shipping_info'
+    shipping_fields = get_slave_fields(table)
+    shipping_contents = get_slave_contents(table, company_id)
+    return render_template('show_shipping_info.html', fields=fields, contents=contents)
+
 
 @login_required
 @app.route('/add_company', methods=['GET', 'POST'])
